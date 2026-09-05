@@ -1,8 +1,5 @@
-# 📘 Dự Án Nghiên Cứu: Ứng Dụng Của Hàm Số & Đồ Thị Trong Thực Tiễn (Toán Lớp 10)
+# 📘 Dự Án: Ứng Dụng Của Hàm Số & Đồ Thị Trong Thực Tiễn (Toán Lớp 10)
 
-Chào mừng bạn đến với kho lưu trữ dự án học tập và nghiên cứu chuyên đề **Hàm số** trong chương trình Toán lớp 10. Đây là nơi quản lý toàn bộ quá trình nghiên cứu, đề cương chi tiết, mã nguồn trình bày bằng Typst và các bài toán thực tế.
-
----
 
 ## 📌 1. Thông Tin Chung
 * **Chủ đề:** Hàm số, đồ thị bậc nhất, hàm số bậc hai và các ứng dụng thực tiễn trong đời sống, kinh tế, vật lý.

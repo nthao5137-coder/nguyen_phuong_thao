@@ -1,0 +1,651 @@
+#set document(title: "Ứng Dụng Của Vectơ & Hệ Thức Lượng Trong Thực Tiễn", author: "Nguyễn Phương Thảo")
+#set page(paper: "a4", margin: (x: 2.5cm, y: 2.5cm))
+#set text(font: "Liberation Serif", size: 14pt, lang: "vi")
+#set par(justify: true, leading: 0.65em)
+#set page(footer: align(center)[#context counter(page).display("1")])
+#let toc-item(title, page-num, level: 0) = {
+  let indent-space = h(level * 1.5cm)
+  let weight-style = if level == 0 { "bold" } else { "regular" }
+  let display-title = if level == 0 { upper(title) } else { title }
+  
+  v(0.4em)
+  grid(
+    columns: (1fr, auto),
+    align: (left + bottom, right + bottom),
+    row-gutter: 0pt,
+    [
+      #indent-space#text(weight: weight-style)[#display-title]
+      #box(width: 1fr, repeat(text(fill: gray)[ . ]))
+    ],
+    text(weight: weight-style)[#strong(str(page-num))]
+  )
+}
+
+// --- TRANG BÌA ---
+#align(center)[
+  #v(1cm)
+  #text(size: 14pt, weight: "bold")[TRƯỜNG ĐẠI HỌC SƯ PHẠM, ĐẠI HỌC HUẾ] \
+  #text(size: 14pt, weight: "bold")[KHOA TOÁN HỌC]
+  
+  #v(3cm)
+  #text(size: 20pt,weight: "bold")[BÁO CÁO DỰ ÁN]
+
+  #text(size: 20pt, weight: "bold")[ỨNG DỤNG CỦA VECTƠ & HỆ THỨC LƯỢNG TRONG THỰC TIỄN]
+  
+  #v(3.5cm)
+  #text(size: 14pt)[Môn học: Tích hợp công nghệ thông tin trong dạy Toán]
+]
+
+#v(2cm)
+#grid(
+  columns: (1fr, 1fr),
+  align(left)[
+    #text(size: 14pt)[
+      *Giảng viên hướng dẫn:* \
+      TS. Nguyễn Đăng Minh Phúc
+    ]
+  ],
+  align(right)[
+    #text(size: 14pt)[
+      *Sinh viên thực hiện:* \
+      Nguyễn Phương Thảo \
+      Mã số sinh viên: 23S1010040 \
+      Lớp: Toán Sư Phạm năm 4
+    ]
+  ]
+)
+
+#align(center)[
+  #v(5cm)
+  #text(size: 14pt, style: "italic")[
+    Huế, ngày #datetime.today().display("[day] tháng [month] năm [year]")
+  ]
+]
+
+#pagebreak()
+
+#align(center)[
+  #text(size: 16pt, weight: "bold")[MỤC LỤC]
+]
+#v(1cm)
+
+#toc-item("LỜI NÓI ĐẦU", 3, level: 0)
+#toc-item("A - PHẦN MỞ ĐẦU", 4, level: 0)
+#toc-item("I / Lý do chọn đề tài", 4, level: 1)
+#toc-item("II / Mục đích và nhiệm vụ nghiên cứu", 4, level: 1)
+#toc-item("III / Đối tượng và phạm vi nghiên cứu", 5, level: 1)
+
+#toc-item("B - NỘI DUNG", 6, level: 0)
+#toc-item("Chương 1: Hệ thống hóa kiến thức cơ bản", 6, level: 1)
+#toc-item("1. Khái niệm vectơ và các phép toán vectơ", 6, level: 2)
+#toc-item("2. Các hệ thức lượng trong tam giác", 7, level: 2)
+#toc-item("3. Các công thức tính diện tích tam giác và ứng dụng", 8, level: 2)
+
+#toc-item("Chương 2: Các mô hình hình học trong thực tiễn", 9, level: 1)
+#toc-item("1. Ứng dụng trong Trắc địa & Đo đạc", 9, level: 2)
+#toc-item("2. Ứng dụng trong Vật lý & Cơ học", 10, level: 2)
+#toc-item("3. Mô hình định vị lực trong kỹ thuật kéo và điều hướng", 11, level: 2)
+
+#toc-item("Chương 3: Bài tập minh họa và lời giải chi tiết", 12, level: 1)
+#toc-item("1. Xây dựng bài toán thực tế tiêu biểu ở cấp độ lớp 10", 12, level: 2)
+#toc-item("2. Lời giải chi tiết bằng phương pháp hình học và vectơ", 13, level: 2)
+
+#toc-item("KẾT LUẬN", 15, level: 0)
+#toc-item("TÀI LIỆU THAM KHẢO", 16, level: 0)
+
+#pagebreak()
+#align(center)[
+  #text(size: 14pt, weight: "bold")[LỜI NÓI ĐẦU]
+]
+#v(0.5cm)
+
+Trong nền giáo dục hiện đại, việc gắn kết kiến thức toán học lý thuyết với thực tiễn đời sống đang trở thành một xu thế tất yếu nhằm phát triển năng lực toàn diện cho học sinh. Môn Hình học lớp 10 không chỉ cung cấp hệ thống các định lý, công thức trừu tượng mà còn đặt nền móng quan trọng để người học nhìn nhận và giải quyết các bài toán đo đạc, kỹ thuật và cơ học thực tế. 
+
+Nhận thức được tầm quan trọng đó, chuyên đề *“Ứng dụng của vectơ & hệ thức lượng trong thực tiễn”* được thực hiện nhằm hệ thống hóa các công cụ toán học cốt lõi như quy tắc vectơ, định lý cô-sin, định lý sin và các hệ thức lượng trong tam giác. Qua đó, đề án hướng dẫn cách chuyển hóa các bài toán thực tế phức tạp thành các mô hình hình học trực quan, giúp người học thấy được tính ứng dụng rộng rãi và vẻ đẹp thực tiễn của toán học.
+
+Dù đã có nhiều cố gắng trong quá trình nghiên cứu và biên soạn, song do giới hạn về thời gian cũng như kinh nghiệm thực tế, đề tài chắc chắn không tránh khỏi những thiếu sót nhất định. Tôi rất mong nhận được sự góp ý quý báu từ thầy và các bạn để đề tài được hoàn thiện hơn.
+
+#align(right)[
+  #v(0.5cm)
+  #text(style: "italic")[Tôi xin chân thành cảm ơn!]
+]
+
+#pagebreak()
+
+= A - PHẦN MỞ ĐẦU
+
+== I. Lý do chọn đề tài
+ #v(0.3cm)
+Trong chương trình Toán học phổ thông nói chung và môn Toán lớp 10 nói riêng, hình học không chỉ đóng vai trò rèn luyện tư duy logic, trừu tượng mà còn là công cụ sắc bén để giải quyết các vấn đề phát sinh từ thực tiễn đời sống, kỹ thuật và khoa học tự nhiên. Hai công cụ nền tảng xuyên suốt phần hình học lớp 10 là vectơ và các hệ thức lượng trong tam giác (định lý cô-sin, định lý sin, các công thức tính diện tích). 
+
+Tuy nhiên, trong thực tế giảng dạy và học tập, học sinh thường dễ rơi vào tình trạng "nặng lý thuyết, nhẹ ứng dụng", xem các định lý hay quy tắc vectơ là những công thức khô khan chỉ dùng để giải bài tập trong sách giáo khoa. Trên thực tế, làm thế nào để đo chiều cao của một ngọn tháp mà không cần trèo lên đó? Làm thế nào để tính khoảng cách giữa hai điểm bị ngăn cách bởi một hồ nước lớn? Hay trong cơ học, làm thế nào để xác định chính xác lực căng dây, hợp lực tác động lên một vật trong hệ thống cân bằng? Những câu hỏi đó không thể giải quyết bằng thước đo trực tiếp hay hình học thuần túy Euclid nếu thiếu đi sự hỗ trợ của đại số hóa vectơ và các hệ thức lượng.
+
+Chính vì những lý do trên, đề tài "Ứng dụng của vectơ & hệ thức lượng trong thực tiễn" được chọn làm chủ đề nghiên cứu nhằm hệ thống hóa lý thuyết, đồng thời xây dựng các mô hình toán học giải quyết những bài toán đo đạc trắc địa, vật lý và kỹ thuật. Qua đó, đề tài giúp củng cố niềm đam mê học tập, nâng cao năng lực vận dụng kiến thức toán học vào thực tiễn cuộc sống cho học sinh.
+
+== II. Mục đích và nhiệm vụ nghiên cứu
+
+ #v(0.3cm)
+* Mục đích nghiên cứu:* Vận dụng linh hoạt các quy tắc tính toán của vectơ, định lý cô-sin và định lý sin để giải quyết các bài toán đo đạc thực tế không thể đo trực tiếp và các bài toán tổng hợp lực trong cơ học.
+
+* Nhiệm vụ nghiên cứu:*
+   - Hệ thống hóa toàn bộ kiến thức cơ bản về vectơ và các hệ thức lượng trong tam giác.
+   
+   - Xây dựng các mô hình hình học ứng dụng tiêu biểu trong trắc địa (đo khoảng cách, chiều cao) và vật lý (tổng hợp lực, vận tốc).
+   - Giải chi tiết các bài toán minh họa điển hình ở cấp độ lớp 10 bằng phương pháp hình học kết hợp đại số hóa vectơ.
+
+== III. Đối tượng và phạm vi nghiên cứu
+ #v(0.3cm)
+* Đối tượng nghiên cứu:* Các kiến thức về vectơ, hệ thức lượng trong tam giác (Chương trình Toán 10) và các mô hình ứng dụng thực tiễn tương ứng.
+
+* Phạm vi nghiên cứu:* 
+  
+ - Về nội dung: Giới hạn trong phạm vi kiến thức hình học chương trình Toán 10 (Bộ sách giáo khoa hiện hành - Kết nối tri thức với cuộc sống).
+  
+ - Về thực tiễn: Tập trung vào các bài toán đo đạc trắc địa quy mô nhỏ (khoảng cách, góc nhìn, chiều cao) và bài toán cân bằng lực, phân tích vận tốc cơ bản.
+
+#pagebreak()
+
+= B - NỘI DUNG
+
+= Chương 1: Hệ Thống Hóa Kiến Thức Cơ Bản
+
+== 1. Khái niệm vectơ và các phép toán vectơ
+
+=== a. Định nghĩa cơ bản:
+
+#block(
+  fill: rgb("f4f6f8"), // Màu nền xám nhạt dịu mắt
+  inset: (x: 1.2em, y: 1.2em),
+  radius: 6pt,         // Bo tròn góc khung
+  stroke: (left: 3pt + rgb("2c3e50")), // Viền đậm bên trái tạo điểm nhấn
+  )[
+ 
+  - **Vectơ:** Là đoạn thẳng có hướng. Ký hiệu vectơ có điểm đầu $A$, điểm cuối $B$ là: $arrow(A B)$.
+  
+  - **Giá của vectơ:** Là đường thẳng đi qua điểm đầu và điểm cuối của vectơ đó.
+  
+  - **Vectơ - không:** Vectơ có điểm đầu và điểm cuối trùng nhau gọi là vectơ - không, ký hiệu: $arrow(0)$.
+  
+  - **Hai vectơ cùng phương:** Là hai vectơ có giá song song hoặc trùng nhau.
+  
+  - **Độ dài của vectơ:** Đó là khoảng cách giữa điểm đầu và điểm cuối của vectơ đó. Độ dài của $arrow(A B)$ ký hiệu là $|arrow(A B)| = A B$.
+  
+  - **Hai vectơ bằng nhau:** Nếu chúng cùng hướng và cùng độ dài.
+]
+=== b) Các phép toán vectơ
+
+#v(0.8em)
+#block(
+  fill: rgb("f4f6f8"),
+  inset: (x: 1.2em, y: 1.2em),
+  radius: 6pt,
+  stroke: (left: 3pt + rgb("2c3e50")),
+)[
+  #text(weight: "bold")[- Qui tắc ba điểm]
+  #v(0.5em)
+  Cho ba điểm $A, B, C$ bất kỳ ta có:
+  $ arrow(A B) + arrow(B C) = arrow(A C) $
+]
+
+
+#v(0.8em)
+#block(
+  fill: rgb("f4f6f8"),
+  inset: (x: 1.2em, y: 1.2em),
+  radius: 6pt,
+  stroke: (left: 3pt + rgb("2980b9")),
+)[
+  #text(weight: "bold")[- Qui tắc trừ]
+  #v(0.5em)
+  Cho ba điểm $A, B, C$ bất kỳ ta có:
+  $ arrow(A B) - arrow(A C) = arrow(C B) $
+]
+
+#v(0.8em)
+
+#block(
+  fill: rgb("f4f6f8"),
+  inset: (x: 1.2em, y: 1.2em),
+  radius: 6pt,
+  stroke: (left: 3pt + rgb("27ae60")),
+)[
+  #text(weight: "bold")[- Qui tắc hình hộp]
+  #v(0.5em)
+  Cho hình hộp $A B C D.A' B' C' D'$ ta có:
+  $ arrow(A B) + arrow(A D) + arrow(A A') = arrow(A C') $
+]
+
+#v(0.8em)
+
+#block(
+  fill: rgb("f4f6f8"),
+  inset: (x: 1.2em, y: 1.2em),
+  radius: 6pt,
+  stroke: (left: 3pt + rgb("8e44ad")),
+)[
+  #text(weight: "bold")[- Phép nhân vectơ với một số]
+  #v(0.3em)
+   _Định nghĩa_ : Cho $arrow(a) != arrow(0)$, $k in RR$, $k != 0$ ta có $arrow(c) = k arrow(a)$ (gọi là phép nhân một số thực với một vectơ). Khi đó:
+   
+    - $arrow(c)$ cùng phương với $arrow(a)$.
+    
+    - $arrow(c)$ cùng hướng với $arrow(a)$ khi $k > 0$; ngược hướng với $arrow(a)$ khi $k < 0$.
+    - Độ dài : 
+    $ |arrow(c)| = |k arrow(a)| = |k| \cdot |arrow(a)| $
+   _Quy ước_ : 
+   $ 0. arrow(a) = arrow(0), quad k. arrow(0) = arrow(0) $
+]
+
+
+
+== 2. Các hệ thức lượng trong tam giác
+
+=== a) Định lý cô-sin
+
+#block(
+  fill: rgb("f4f6f8"),
+  inset: (x: 1.2em, y: 1.2em),
+  radius: 6pt,
+  stroke: (left: 3pt + rgb("2c3e50")),
+)[
+  #text(weight: "bold")[- Định lý cô-sin trong tam giác]
+  #v(0.5em)
+  Trong một tam giác $A B C$ bất kỳ với các cạnh đối diện lần lượt là $a, b, c$, ta có:
+  $ a^2 = b^2 + c^2 - 2 b c cos A $
+  $ b^2 = a^2 + c^2 - 2 a c cos B $
+  $ c^2 = a^2 + b^2 - 2 a b cos C $
+]
+
+#v(0.8em)
+
+#block(
+  fill: rgb("f4f6f8"),
+  inset: (x: 1.2em, y: 1.2em),
+  radius: 6pt,
+  stroke: (left: 3pt + rgb("2980b9")),
+)[
+  #text(weight: "bold")[- Hệ quả (Tính góc của tam giác khi biết ba cạnh)]
+  #v(0.5em)
+  Từ định lý cô-sin, ta suy ra công thức tính các góc của tam giác:
+  $ cos A = frac(b^2 + c^2 - a^2, 2 b c) $
+  $ cos B = frac(a^2 + c^2 - b^2, 2 a c) $
+  $ cos C = frac(a^2 + b^2 - c^2, 2 a b) $
+]
+  
+
+=== b. Định lý sin
+#v(0.5em)
+#block(
+  fill: rgb("f4f6f8"),
+  inset: (x: 1.2em, y: 1.2em),
+  radius: 6pt,
+  stroke: (left: 3pt + rgb("2980b9")),
+)[
+  #text(weight: "bold")[- Định lý sin trong tam giác]
+  #v(0.8em)
+  Trong tam giác $A B C$ bất kỳ có bán kính đường tròn ngoại tiếp là $R$, ta có:
+  $ frac(a, sin A) = frac(b, sin B) = frac(c, sin C) = 2 R $
+]
+
+#v(0.8em)
+
+#block(
+  fill: rgb("f4f6f8"),
+  inset: (x: 1.2em, y: 1.2em),
+  radius: 6pt,
+  stroke: (left: 3pt + rgb("27ae60")),
+)[
+  #text(weight: "bold")[- Hệ quả (Tính độ dài cạnh và góc)]
+  #v(0.5em)
+  Từ định lý sin, ta suy ra công thức tính độ dài các cạnh theo bán kính $R$:
+  $ a = 2 R sin A $
+  $ b = 2 R sin B $
+  $ c = 2 R sin C $
+]
+== 3. Các công thức tính diện tích tam giác và ứng dụng
+
+=== a) Các công thức tính diện tích tam giác
+#v(0.5em)
+#block(
+  fill: rgb("f4f6f8"),
+  inset: (x: 1.2em, y: 1.2em),
+  radius: 6pt,
+  stroke: (left: 3pt + rgb("2c3e50")),
+)[
+  #text(weight: "bold")[1. Công thức diện tích cơ bản]
+  #v(0.5em)
+  Cho tam giác $A B C$ có diện tích ký hiệu là $S$, các cạnh tương ứng là $a, b, c$, các góc là $A, B, C$:
+  $ S = frac(1, 2) a b sin C = frac(1, 2) b c sin A = frac(1, 2) c a sin B $
+]
+#v(0.5em)
+
+#block(
+  fill: rgb("f4f6f8"),
+  inset: (x: 1.2em, y: 1.2em),
+  radius: 6pt,
+  stroke: (left: 3pt + rgb("2980b9")),
+)[
+  #text(weight: "bold")[2. Công thức Heron]
+  #v(0.3em)
+  Với nửa chu vi $p = frac(a + b + c, 2)$ , diện tích tam giác được tính bởi:
+  $ S = sqrt(p(p - a)(p - b)(p - c)) $
+]
+
+#v(0.5em)
+
+#block(
+  fill: rgb("f4f6f8"),
+  inset: (x: 1.2em, y: 1.2em),
+  radius: 6pt,
+  stroke: (left: 3pt + rgb("27ae60")),
+)[
+  #text(weight: "bold")[3. Liên quan đến đường tròn nội tiếp, ngoại tiếp]
+  #v(0.2em)
+  Gọi $r$ là bán kính đường tròn nội tiếp và $R$ là bán kính đường tròn ngoại tiếp tam giác, ta có:
+  $ S = p r quad text(v à) quad S = frac(a b c, 4 R) $
+]
+
+
+=== b) Bài toán giải tam giác và ứng dụng
+
+#block(
+  fill: rgb("f4f6f8"),
+  inset: (x: 1.2em, y: 1.2em),
+  radius: 6pt,
+  stroke: (left: 3pt + rgb("8e44ad")),
+)[
+  #text(weight: "bold")[- Khái niệm giải tam giác]
+  #v(0.3em)
+  Giải tam giác là việc tính độ dài các cạnh và số đo các góc của một tam giác khi biết một số yếu tố cho trước (ví dụ: biết ba cạnh, biết hai cạnh và góc xen giữa, hoặc biết một cạnh và hai góc kề).
+]
+
+#v(0.8em)
+
+#block(
+  fill: rgb("f4f6f8"),
+  inset: (x: 1.2em, y: 1.2em),
+  radius: 6pt,
+  stroke: (left: 3pt + rgb("d35400")),
+)[
+  #text(weight: "bold")[- Ý nghĩa thực tiễn]
+  #v(0.3em)
+  Việc kết hợp thành thạo các hệ thức lượng trong tam giác cùng công cụ tính diện tích tạo cơ sở toán học vững chắc để giải quyết các bài toán đo đạc trắc địa, xác định khoảng cách không thể đo trực tiếp ở chương tiếp theo.
+]
+
+#pagebreak()
+
+= Chương 2: Các Mô Hình Hình Học Trong Thực Tiễn
+
+== 1. Ứng dụng trong Vật lý & Cơ học (Sử dụng công cụ Vectơ)
+ #v(0.3cm)
+
+Bên cạnh trắc địa, vectơ chính là "ngôn ngữ" cốt lõi trong cơ học để biểu diễn các đại lượng có hướng như lực, vận tốc, gia tốc. Việc tổng hợp và phân tích lực giúp giải thích trạng thái cân bằng của vật thể trong tự nhiên và kỹ thuật.
+
+=== a) Tổng hợp lực và quy tắc hình bình hành
+#block(
+  fill: rgb("f4f6f8"),
+  inset: (x: 1.2em, y: 1.2em),
+  radius: 6pt,
+  stroke: (left: 3pt + rgb("27ae60")),
+)[
+  - **Ý nghĩa cơ học:** Khi có nhiều lực cùng tác dụng lên một chất điểm, ta có thể thay thế các lực đó bằng một lực duy nhất gọi là *hợp lực*. Hợp lực này đúng bằng tổng của các vectơ lực thành phần.
+  
+  - **Quy tắc hình bình hành:** Nếu hai lực thành phần $arrow(F_1)$ và $arrow(F_2)$ đồng quy tại một điểm và tạo với nhau một góc $alpha$, thì hợp lực $arrow(F) = arrow(F_1) + arrow(F_2)$ được biểu diễn theo đường chéo của hình bình hành dựng trên hai vectơ lực đó.
+  
+  - **Công thức tính độ lớn hợp lực (Định lý cô-sin):**
+    $ |arrow(F)|^2 = |arrow(F_1)|^2 + |arrow(F_2)|^2 + 2 |arrow(F_1)|.|arrow(F_2)| cos(alpha) $
+]
+
+ #v(0.5cm)
+
+=== b) Bài toán cân bằng lực trong hệ thống treo vật nặng
+#block(
+  fill: rgb("f4f6f8"),
+  inset: (x: 1.2em, y: 1.2em),
+  radius: 6pt,
+  stroke: (left: 3pt + rgb("8e44ad")),
+)[
+  - **Bài toán thực tế:** Một chiếc đèn nặng được treo vào điểm chính giữa của một sợi dây cáp căng ngang, hoặc treo bởi hai sợi dây xiên hợp với trần nhà các góc xác định. Làm thế nào để tính lực căng dây của từng sợi?
+  
+  - **Nguyên lý cân bằng:** Một vật đứng yên (hoặc chuyển động thẳng đều) khi tổng các lực tác dụng lên vật bằng vectơ - không:
+    $ sum arrow(F) = arrow(0) $
+    
+  - **Phương pháp giải bằng hệ tọa độ / vectơ:**
+  
+    - Phân tích các lực căng dây $arrow(T_1)$, $arrow(T_2)$ thành các thành phần theo hai phương vuông góc $O x$ (phương ngang) và $O y$ (phương thẳng đứng).
+    
+    - Lập hệ phương trình cân bằng hình chiếu trên các trục:
+       $
+cases(
+  sum F_x = 0 quad & (text("tổng hình chiếu lực theo phương ngang bằng 0")),
+  sum F_y = 0 quad & (text("tổng hình chiếu lực theo phương thẳng đứng bằng 0"))
+)
+$
+    - Giải hệ phương trình đại số để tìm ra độ lớn lực căng của các sợi dây, đảm bảo an toàn kỹ thuật trong xây dựng và thiết kế cơ khí.
+]
+
+== 2. Ứng dụng trong Trắc địa & Đo đạc (Sử dụng Hệ thức lượng)
+ #v(0.3cm)
+Trong thực tế, nhiều bài toán đo đạc khoảng cách giữa hai điểm mà giữa chúng bị cản trở bởi các chướng ngại vật như hồ nước, thung lũng, hoặc việc đo chiều cao của các công trình lớn (cột điện, tháp chuông, ngọn núi) mà ta không thể đo trực tiếp bằng thước dây. Các hệ thức lượng trong tam giác cung cấp phương pháp gián tiếp cực kỳ hiệu quả để giải quyết các bài toán này.
+
+=== a) Bài toán đo khoảng cách giữa hai điểm bị ngăn cách bởi hồ nước
+#block(
+  fill: rgb("f4f6f8"),
+  inset: (x: 1.2em, y: 1.2em),
+  radius: 6pt,
+  stroke: (left: 3pt + rgb("2c3e50")),
+)[
+  - **Bài toán:** Giả sử cần tính khoảng cách giữa hai điểm $A$ và $B$ bị ngăn cách bởi một hồ nước lớn, sao cho không thể đo trực tiếp đoạn $A B$.
+  
+  - **Phương pháp thực hiện:**
+    - Chọn một điểm $C$ ở trên bờ sao cho từ $C$ có thể nhìn rõ cả $A$ và $B$.
+    
+    - Đo khoảng cách từ $C$ đến $A$ (đo được độ dài cạnh $b$) và từ $C$ đến $B$ (đo được độ dài cạnh $a$).
+    - Đo góc $C$ giữa hai hướng nhìn từ $C$ tới $A$ và $B$ (ta có góc $C$).
+    
+  - **Công cụ tính toán (Định lý cô-sin):**
+    Khoảng cách $A B = c$ được thông qua hệ thức lượng trong tam giác $A B C$:
+    $ c^2 = a^2 + b^2 - 2 a b cos C ==> c = sqrt(a^2 + b^2 - 2 a b cos C) $
+]
+
+#v(0.8em)
+
+=== b) Bài toán đo chiều cao của tháp hoặc cây cao (Không đo trực tiếp)
+#block(
+  fill: rgb("f4f6f8"),
+  inset: (x: 1.2em, y: 1.2em),
+  radius: 6pt,
+  stroke: (left: 3pt + rgb("2980b9")),
+)[
+  - **Bài toán:** Cần xác định chiều cao $h$ của một ngọn tháp $A B$ (với $A$ là chân tháp, $B$ là đỉnh tháp) mà người đo không thể tiếp cận sát chân tháp $A$.
+  
+  - **Phương pháp thực hiện:**
+  
+    - Chọn hai điểm xuất phát $C$ và $D$ trên mặt đất thẳng hàng với chân tháp $A$, sao cho khoảng cách $C D = a$ đo được dễ dàng.
+    
+    - Dùng giác kế đo góc nâng từ điểm $C$ nhìn lên đỉnh tháp $B$ là $alpha$, và từ điểm $D$ nhìn lên đỉnh tháp $B$ là $beta$ (với $alpha > beta$).
+    
+  - **Công cụ tính toán (Định lý sin và tam giác vuông):**
+  
+    - Xét tam giác $B C D$, ta tính được các góc thông qua góc bù và góc ngoài.
+    
+    - Áp dụng định lý sin cho tam giác $B C D$ để tìm cạnh $B C$:
+      $ frac(B C, sin beta) = frac(C D, sin(alpha - beta)) ==> B C = frac(a .sin beta, sin(alpha - beta)) $
+    - Xét tam giác vuông $A B C$ tại $A$, chiều cao của tháp là:
+      $ h = B C. sin alpha = frac(a .sin beta. sin alpha, sin(alpha - beta)) $
+]
+== 3. Mô hình định vị lực trong kỹ thuật kéo và điều hướng
+ #v(0.3cm)
+Trong thực tế kỹ thuật, khi một công trình chịu tác dụng đồng thời của nhiều lực không song song (ví dụ: tàu thủy bị kéo bởi hai tàu lai dắt trên sông chịu thêm lực cản của dòng nước, hoặc hệ thống cáp treo/cần cẩu chữ A), việc giải quyết bài toán đòi hỏi sự đồng bộ: **dùng Vectơ để lập mô hình không gian lực**, sau đó **dùng Hệ thức lượng trong tam giác (định lý cô-sin và sin) để tính toán chính xác độ lớn và góc lệch hướng di chuyển**.
+
+#block(
+  fill: rgb("f4f6f8"),
+  inset: (x: 1.2em, y: 1.2em),
+  radius: 6pt,
+  stroke: (left: 3pt + rgb("c0392b")),
+)[
+  - **Thực tiễn bài toán:** Một chiếc sà lan bị mắc cạn trên sông và cần được hai tàu lai dắt (tàu kéo) hỗ trợ đưa về luồng lạch chính. Do vướng chướng ngại vật trên bờ, hai tàu kéo không thể đi song song mà phải thả hai sợi cáp kéo lệch nhau một góc $alpha$. Biết lực kéo của hai tàu lần lượt là $arrow(F_1)$ và $arrow(F_2)$. Làm thế nào để kỹ sư tính được độ lớn của hợp lực kéo sà lan và xác định chính xác sà lan sẽ dịch chuyển lệch về phía bên nào so với hướng của tàu thứ nhất?
+  
+  - **Quy trình giải quyết bằng mô hình toán học:**
+  
+    - *Bước 1 (Mô hình hóa bằng Vectơ):* Đặt các lực kéo của hai tàu lần lượt là hai vectơ đồng quy tại mốc buộc cáp trên sà lan: $arrow(F_1)$ và $arrow(F_2)$. Hợp lực kéo sà lan chính là tổng vectơ:
+       $ arrow(F) = arrow(F_1) + arrow(F_2) $
+    - *Bước 2 (Tính toán độ lớn bằng Hệ thức lượng - Định lý cô-sin):* Áp dụng quy tắc hình bình hành, ta tách thành tam giác lực. Độ lớn của hợp lực kéo $arrow(F)$ được tính thông qua định lý cô-sin với góc xen giữa $alpha$:
+       $ |arrow(F)|^2 = |arrow(F_1)|^2 + |arrow(F_2)|^2 + 2 |arrow(F_1)|.|arrow(F_2)| cos alpha $
+    - *Bước 3 (Xác định hướng di chuyển bằng Định lý sin):* Để đảm bảo sà lan không bị dạt vào bờ nguy hiểm, kỹ sư cần tính góc lệch $beta$ giữa hướng di chuyển thực tế (hợp lực $arrow(F)$) so với hướng cáp của tàu thứ nhất ($arrow(F_1)$) bằng định lý sin trong tam giác lực:
+       $ frac(|arrow(F_2)|, sin beta) = frac(|arrow(F)|, sin alpha) ==> sin beta = frac(|arrow(F_2)|. sin alpha, |arrow(F)|) $
+]
+#pagebreak()
+
+= Chương 3: Bài Tập Minh Họa Và Lời Giải Chi Tiết
+#import "@preview/cetz:0.3.1" // Thư viện vẽ hình chuẩn của Typst
+#v(0.8em)
+Chương này tuyển chọn các bài toán thực tiễn tiêu biểu bám sát chương trình Toán 10 (Bộ sách Kết nối tri thức với cuộc sống), được phân chia theo các cấp độ tư duy từ dễ đến khó (Nhận biết, Thông hiểu, Vận dụng cao). Qua đó, minh họa rõ nét cách chuyển hóa đề bài thực tế thành ngôn ngữ hình học, sử dụng linh hoạt hệ thức lượng và công cụ vectơ để giải quyết.
+
+== 1. Xây dựng bài toán thực tế tiêu biểu ở cấp độ lớp 10
+ #v(0.3cm)
+Hệ thống bài tập được xây dựng bao gồm 3 mức độ nhận thức:
+
+- Bài toán 1 (Mức độ Nhận biết - Thông hiểu): Bài toán đo khoảng cách gián tiếp qua vật cản đơn giản bằng định lý cô-sin.
+
+- Bài toán 2 (Mức độ Vận dụng): Bài toán tính chiều cao công trình bằng hệ thống hai góc quan sát và định lý sin.
+
+- Bài toán 3 (Mức độ Vận dụng cao): Bài toán mô hình định vị lực (giao thoa giữa vectơ và hệ thức lượng) trong kỹ thuật kéo vật nặng.
+
+== 2. Lời giải chi tiết bằng phương pháp hình học và vectơ
+
+=== Bài toán 1 (Mức độ Nhận biết - Thông hiểu): Đo khoảng cách qua hồ nước
+#block(
+  fill: rgb("f4f6f8"),
+  inset: (x: 1.2em, y: 1.5em),
+  radius: 6pt,
+  stroke: (left: 3pt + rgb("2c3e50")),
+)[
+  - *Đề bài:* Để đo khoảng cách giữa hai điểm $A$ và $B$ ở hai bên một hồ nước, một học sinh đứng ở vị trí điểm $C$ (không bị chắn) và tiến hành đo đạc các kích thước sau: khoảng cách từ $C$ đến $A$ là $A C = 300 "m"$, từ $C$ đến $B$ là $C B = 450 "m"$. Góc nhìn từ $C$ tới hai điểm $A$ và $B$ là $angle(A C B) = 60degree$. Hãy tính khoảng cách giữa hai điểm $A$ và $B$.
+  
+  - *Lời giải chi tiết:*
+    
+  Xét tam giác $A B C$, ta cần tính độ dài cạnh $A B = c$. Theo giả thiết, ta có các yếu tố của tam giác:
+  
+       - Cạnh $b = C B = 450 "m"$
+       
+       - Cạnh $a = A C = 300 "m"$
+       
+       - Góc xen giữa $angle(A B C) = 60^degree$
+       
+     Áp dụng định lý cô-sin trong tam giác $A B C$:
+     
+       $ c^2 = a^2 + b^2 - 2 a b .cos C $
+     Thay số vào công thức:
+     
+       $ c^2 = 300^2 + 450^2 - 2 .300 .450 .cos(60^degree) $
+       $ c^2 = 90000 + 202500 - 270000. 1/2 $
+       $ c^2 = 292500 - 135000 = 157500 $
+       
+     Suy ra khoảng cách thực tế giữa hai điểm $A$ và $B$ là:
+       $ c = sqrt(157500) approx 396,86 " (m)" $
+       
+    *_Kết luận:_* Khoảng cách giữa hai điểm $A$ và $B$ qua hồ nước xấp xỉ $396,86 "m"$.
+]
+
+=== Bài toán 2 (Mức độ Vận dụng): Đo chiều cao ngọn tháp
+#block(
+  fill: rgb("f4f6f8"),
+  inset: (x: 1.2em, y: 1.2em),
+  radius: 6pt,
+  stroke: (left: 3pt + rgb("2980b9")),
+)[
+  - *Đề bài:* Từ vị trí $C$ trên mặt đất, một người nhìn lên đỉnh $B$ của một ngọn tháp với góc nâng $30^degree$. Đi thẳng đến chân tháp thêm một khoảng $C D = 50 "m"$ tới vị trí điểm $D$, người đó nhìn lên đỉnh tháp với góc nâng $60^degree$. Tính chiều cao $h$ của ngọn tháp (làm tròn đến chữ số thập phân thứ hai).
+  
+  - *Lời giải chi tiết:*
+  
+     Gọi $A$ là chân tháp, tháp vuông góc với mặt đất tại $A$. Ta cần tính chiều cao $A B = h$.
+    
+     Theo giả thiết: Khoảng cách $C D = 50 "m"$, góc $angle B C A = 30^degree$, góc $angle B D A = 60^degree$.
+     
+     Xét tam giác $B C D$:
+     
+       - Góc ngoài tại đỉnh $D$ của tam giác $B C D$ là $angle B D A = angle B C D + angle C B D ==> 60^degree = 30^degree + angle C B D ==> angle C B D = 30^degree$.
+       
+       - Do đó tam giác $B C D$ cân tại $D$, suy ra độ dài cạnh $B C = C D = 50 "m"$.
+     Xét tam giác vuông $A B C$ tại $A$:
+     
+       - Chiều cao tháp $h = A B$ tính theo cạnh huyền $B C$ và góc $angle B C A$:
+         $ h = B C.sin(angle B C A) = 50 .sin(30^degree) = 50 .1/2 = 25 " (m)" $
+    *_Kết luận:_* Chiều cao của ngọn tháp là $25 "m"$.
+]
+
+#v(0.8em)
+
+=== Bài toán 3 (Mức độ Vận dụng cao): Mô hình định vị lực kéo sà lan
+ #v(0.8cm)
+#block(
+  fill: rgb("f4f6f8"),
+  inset: (x: 1.2em, y: 1.2em),
+  radius: 6pt,
+  stroke: (left: 3pt + rgb("c0392b")),
+)[
+  - *Đề bài:* Một chiếc sà lan bị mắc cạn trên đoạn sông thẳng và được hỗ trợ bởi hai tàu kéo. Tàu thứ nhất kéo với lực $F_1 = 3000 "N"$, tàu thứ hai kéo với lực $F_2 = 4000 "N"$. Hai sợi cáp kéo tạo với nhau một góc $alpha = 60^degree$. 
+    \ a) Tính độ lớn hợp lực $arrow(F)$ tác dụng lên sà lan.
+    \ b) Tính góc lệch $beta$ giữa hướng di chuyển thực tế của sà lan so với hướng lực kéo của tàu thứ nhất để kỹ sư điều chỉnh tay lái.
+  
+  - *Lời giải chi tiết:*
+  
+    1. *Câu a: Tính độ lớn hợp lực*
+       - Gọi $arrow(F_1)$ và $arrow(F_2)$ là hai vectơ lực kéo đồng quy tại mốc buộc cáp trên sà lan. Hợp lực kéo sà lan là tổng vectơ: $arrow(F) = arrow(F_1) + arrow(F_2)$.
+       
+       - Áp dụng quy tắc hình bình hành với góc xen giữa $alpha = 60^degree$, độ lớn hợp lực được tính bằng công thức:
+         $ |arrow(F)|^2 = |arrow(F_1)|^2 + |arrow(F_2)|^2 + 2 |arrow(F_1)| .|arrow(F_2)| cos(alpha) $
+       - Thay số vào ta có:
+         $ |arrow(F)|^2 = 3000^2 + 4000^2 + 2 .3000 .4000 .cos(60^degree) $
+         $ |arrow(F)|^2 = 9000000 + 16000000 + 24000000 . 1/2 $
+         $ |arrow(F)|^2 = 25000000 + 12000000 = 37000000 $
+       - Suy ra độ lớn hợp lực kéo:
+         $ |arrow(F)| = sqrt(37000000) approx 6082,76 " (N)" $
+         
+          #v(0.8cm)
+    2. *Câu b: Tính góc lệch hướng di chuyển*
+       - Xét tam giác lực tạo bởi hai vectơ thành phần và hợp lực, gọi $beta$ là góc hợp bởi vectơ hợp lực $arrow(F)$ và vectơ $arrow(F_1)$.
+       
+       - Áp dụng định lý sin trong tam giác lực:
+       
+         $ frac(|arrow(F_2)|, sin(beta)) = frac(|arrow(F)|, sin(alpha)) ==> sin(beta) = frac(|arrow(F_2)| .sin(alpha), |arrow(F)|) $
+       - Thay các giá trị đã tính:
+         $ sin(beta) = frac(4000.sin(60^degree), 6082.76)  approx 0,5695 $
+       - Suy ra góc lệch:
+         $ beta = arcsin(0,5695) approx 34,72^degree $
+    *_Kết luận:_* Hợp lực kéo sà lan đạt khoảng $6082.76 "N"$ và hướng di chuyển của sà lan sẽ lệch một góc khoảng $34,72^degree$ về phía tàu thứ hai so với hướng của tàu thứ nhất.
+]
+#pagebreak()
+
+#align(center)[
+  #text(size: 14pt, weight: "bold")[KẾT LUẬN]
+]
+#v(0.5cm)
+
+Đề án *“Ứng dụng của vectơ & hệ thức lượng trong thực tiễn”* đã hoàn thành việc hệ thống hóa các cơ sở lý luận cốt lõi của hình học lớp 10, đồng thời xây dựng thành công cầu nối giữa kiến thức toán học lý thuyết và các mô hình thực tiễn đời sống, kỹ thuật. 
+
+Qua quá trình nghiên cứu và giải quyết các vấn đề đặt ra, đề án đã đạt được những kết quả tiêu biểu sau:
+
+  - **Hệ thống hóa toàn diện:** Làm rõ bản chất và các phép toán của vectơ, hệ thống các định lý cô-sin, định lý sin cùng các công thức tính diện tích tam giác dưới góc nhìn ứng dụng.
+  - **Xây dựng mô hình thực tiễn trực quan:** Chuyển hóa thành công các bài toán đo đạc trắc địa (khoảng cách, chiều cao), bài toán cân bằng cơ học (tổng hợp lực) và mô hình định vị lực kéo sà lan thành các bài toán hình học có lời giải cụ thể.
+  - **Nâng cao năng lực vận dụng:** Minh họa qua hệ thống bài tập từ mức độ nhận biết đến vận dụng cao, giúp người học thấy được tính hữu dụng, sự gắn kết chặt chẽ giữa đại số hóa vectơ và lượng giác hình học trong việc giải quyết các bài toán thực tế.
+
+Dù đã nỗ lực hoàn thiện với tư duy sư phạm nghiêm túc, song do giới hạn về thời gian và phạm vi nghiên cứu, đề án không tránh khỏi những thiếu sót nhất định. Tôi rất mong nhận được những ý kiến đóng góp quý báu từ quý thầy và các bạn để đề án được hoàn thiện hơn, trở thành tài liệu tham khảo hữu ích.
+
+#pagebreak()
+
+#align(center)[
+  #text(size: 14pt, weight: "bold")[TÀI LIỆU THAM KHẢO]
+]
+#v(0.5cm)
+
+1. Bộ sách giáo khoa Toán 10 (Bộ Kết nối tri thức với cuộc sống), NXB Giáo dục Việt Nam, 2022.
+
+2. Sách giáo viên Toán 10 (Bộ Kết nối tri thức với cuộc sống), NXB Giáo dục Việt Nam, 2022.
+
+3. Đoàn Quỳnh (Chủ biên), Hình học 10 nâng cao, NXB Giáo dục Việt Nam, 2020.
+
+4. Văn Thế Bôn, Ứng dụng của phương pháp vectơ trong giải toán hình học phổ thông, NXB Đại học Quốc gia Thành phố Hồ Chí Minh, 2018.
+
+5. Bộ Giáo dục và Đào tạo, Chương trình giáo dục phổ thông môn Toán (Ban hành kèm theo Thông tư số 32/2018/TT-BGDĐT), 2018.

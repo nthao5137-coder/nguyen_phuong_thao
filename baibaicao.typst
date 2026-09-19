@@ -22,6 +22,12 @@
 }
 
 // --- TRANG BÌA ---
+#rect(
+  width: 100%,
+  height: 100%,
+  stroke: 1.5pt + black, // Độ dày và màu của khung viền
+  inset: 1.5cm,          // Khoảng cách từ nội dung đến khung
+)[
 #align(center)[
   #v(1cm)
   #text(size: 14pt, weight: "bold")[TRƯỜNG ĐẠI HỌC SƯ PHẠM, ĐẠI HỌC HUẾ] \
@@ -56,12 +62,12 @@
 )
 
 #align(center)[
-  #v(5cm)
+  #v(3.5cm)
   #text(size: 14pt, style: "italic")[
     Huế, ngày #datetime.today().display("[day] tháng [month] năm [year]")
   ]
 ]
-
+]
 #pagebreak()
 
 #align(center)[
@@ -82,7 +88,7 @@
 #toc-item("3. Các công thức tính diện tích tam giác và ứng dụng", 8, level: 2)
 
 #toc-item("Chương 2: Các mô hình hình học trong thực tiễn", 9, level: 1)
-#toc-item("1. Ứng dụng trong Vật lý & Cơ học", 9, level: 2)
+#toc-item("1. Ứng dụng trong Vật lý & Cơ học ", 9, level: 2)
 #toc-item("2. Ứng dụng trong Trắc địa & Đo đạc", 10, level: 2)
 #toc-item("3. Mô hình định vị lực trong kỹ thuật kéo và điều hướng", 11, level: 2)
 
@@ -154,7 +160,7 @@ Chính vì những lý do trên, đề tài "Ứng dụng của vectơ & hệ th
 === a. Định nghĩa cơ bản:
 
 #block(
-  fill: rgb("f4f6f8"), // Màu nền xám nhạt dịu mắt
+  fill: rgb("e7f5ff"), // Màu nền xám nhạt dịu mắt
   inset: (x: 1.2em, y: 1.2em),
   radius: 6pt,         // Bo tròn góc khung
   stroke: (left: 3pt + rgb("2c3e50")), // Viền đậm bên trái tạo điểm nhấn
@@ -176,7 +182,7 @@ Chính vì những lý do trên, đề tài "Ứng dụng của vectơ & hệ th
 
 #v(0.8em)
 #block(
-  fill: rgb("f4f6f8"),
+  fill: rgb("e7f5ff"),
   inset: (x: 1.2em, y: 1.2em),
   radius: 6pt,
   stroke: (left: 3pt + rgb("2c3e50")),
@@ -190,7 +196,7 @@ Chính vì những lý do trên, đề tài "Ứng dụng của vectơ & hệ th
 
 #v(0.8em)
 #block(
-  fill: rgb("f4f6f8"),
+  fill: rgb("e7f5ff"),
   inset: (x: 1.2em, y: 1.2em),
   radius: 6pt,
   stroke: (left: 3pt + rgb("2980b9")),
@@ -204,7 +210,7 @@ Chính vì những lý do trên, đề tài "Ứng dụng của vectơ & hệ th
 #v(0.8em)
 
 #block(
-  fill: rgb("f4f6f8"),
+  fill: rgb("e7f5ff"),
   inset: (x: 1.2em, y: 1.2em),
   radius: 6pt,
   stroke: (left: 3pt + rgb("27ae60")),
@@ -218,7 +224,7 @@ Chính vì những lý do trên, đề tài "Ứng dụng của vectơ & hệ th
 #v(0.8em)
 
 #block(
-  fill: rgb("f4f6f8"),
+  fill: rgb("e7f5ff"),
   inset: (x: 1.2em, y: 1.2em),
   radius: 6pt,
   stroke: (left: 3pt + rgb("8e44ad")),
@@ -243,7 +249,7 @@ Chính vì những lý do trên, đề tài "Ứng dụng của vectơ & hệ th
 === a) Định lý cô-sin
 
 #block(
-  fill: rgb("f4f6f8"),
+  fill: rgb("e7f5ff"),
   inset: (x: 1.2em, y: 1.2em),
   radius: 6pt,
   stroke: (left: 3pt + rgb("2c3e50")),
@@ -259,7 +265,7 @@ Chính vì những lý do trên, đề tài "Ứng dụng của vectơ & hệ th
 #v(0.8em)
 
 #block(
-  fill: rgb("f4f6f8"),
+  fill: rgb("e7f5ff"),
   inset: (x: 1.2em, y: 1.2em),
   radius: 6pt,
   stroke: (left: 3pt + rgb("2980b9")),
@@ -276,7 +282,7 @@ Chính vì những lý do trên, đề tài "Ứng dụng của vectơ & hệ th
 === b. Định lý sin
 #v(0.5em)
 #block(
-  fill: rgb("f4f6f8"),
+  fill: rgb("e7f5ff"),
   inset: (x: 1.2em, y: 1.2em),
   radius: 6pt,
   stroke: (left: 3pt + rgb("2980b9")),
@@ -290,7 +296,7 @@ Chính vì những lý do trên, đề tài "Ứng dụng của vectơ & hệ th
 #v(0.8em)
 
 #block(
-  fill: rgb("f4f6f8"),
+  fill: rgb("e7f5ff"),
   inset: (x: 1.2em, y: 1.2em),
   radius: 6pt,
   stroke: (left: 3pt + rgb("27ae60")),
@@ -307,7 +313,7 @@ Chính vì những lý do trên, đề tài "Ứng dụng của vectơ & hệ th
 === a) Các công thức tính diện tích tam giác
 #v(0.5em)
 #block(
-  fill: rgb("f4f6f8"),
+  fill: rgb("e7f5ff"),
   inset: (x: 1.2em, y: 1.2em),
   radius: 6pt,
   stroke: (left: 3pt + rgb("2c3e50")),
@@ -320,7 +326,7 @@ Chính vì những lý do trên, đề tài "Ứng dụng của vectơ & hệ th
 #v(0.5em)
 
 #block(
-  fill: rgb("f4f6f8"),
+  fill: rgb("e7f5ff"),
   inset: (x: 1.2em, y: 1.2em),
   radius: 6pt,
   stroke: (left: 3pt + rgb("2980b9")),
@@ -334,7 +340,7 @@ Chính vì những lý do trên, đề tài "Ứng dụng của vectơ & hệ th
 #v(0.5em)
 
 #block(
-  fill: rgb("f4f6f8"),
+  fill: rgb("e7f5ff"),
   inset: (x: 1.2em, y: 1.2em),
   radius: 6pt,
   stroke: (left: 3pt + rgb("27ae60")),
@@ -349,7 +355,7 @@ Chính vì những lý do trên, đề tài "Ứng dụng của vectơ & hệ th
 === b) Bài toán giải tam giác và ứng dụng
 
 #block(
-  fill: rgb("f4f6f8"),
+  fill: rgb("e7f5ff"),
   inset: (x: 1.2em, y: 1.2em),
   radius: 6pt,
   stroke: (left: 3pt + rgb("8e44ad")),
@@ -362,7 +368,7 @@ Chính vì những lý do trên, đề tài "Ứng dụng của vectơ & hệ th
 #v(0.8em)
 
 #block(
-  fill: rgb("f4f6f8"),
+  fill: rgb("e7f5ff"),
   inset: (x: 1.2em, y: 1.2em),
   radius: 6pt,
   stroke: (left: 3pt + rgb("d35400")),
@@ -383,7 +389,7 @@ Bên cạnh trắc địa, vectơ chính là "ngôn ngữ" cốt lõi trong cơ 
 
 === a) Tổng hợp lực và quy tắc hình bình hành
 #block(
-  fill: rgb("f4f6f8"),
+  fill: rgb("e7f5ff"),
   inset: (x: 1.2em, y: 1.2em),
   radius: 6pt,
   stroke: (left: 3pt + rgb("27ae60")),
@@ -400,7 +406,7 @@ Bên cạnh trắc địa, vectơ chính là "ngôn ngữ" cốt lõi trong cơ 
 
 === b) Bài toán cân bằng lực trong hệ thống treo vật nặng
 #block(
-  fill: rgb("f4f6f8"),
+  fill: rgb("e7f5ff"),
   inset: (x: 1.2em, y: 1.2em),
   radius: 6pt,
   stroke: (left: 3pt + rgb("8e44ad")),
@@ -430,7 +436,7 @@ Trong thực tế, nhiều bài toán đo đạc khoảng cách giữa hai đi�
 
 === a) Bài toán đo khoảng cách giữa hai điểm bị ngăn cách bởi hồ nước
 #block(
-  fill: rgb("f4f6f8"),
+  fill: rgb("e7f5ff"),
   inset: (x: 1.2em, y: 1.2em),
   radius: 6pt,
   stroke: (left: 3pt + rgb("2c3e50")),
@@ -452,7 +458,7 @@ Trong thực tế, nhiều bài toán đo đạc khoảng cách giữa hai đi�
 
 === b) Bài toán đo chiều cao của tháp hoặc cây cao (Không đo trực tiếp)
 #block(
-  fill: rgb("f4f6f8"),
+  fill: rgb("e7f5ff"),
   inset: (x: 1.2em, y: 1.2em),
   radius: 6pt,
   stroke: (left: 3pt + rgb("2980b9")),
@@ -479,7 +485,7 @@ Trong thực tế, nhiều bài toán đo đạc khoảng cách giữa hai đi�
 Trong thực tế kỹ thuật, khi một công trình chịu tác dụng đồng thời của nhiều lực không song song (ví dụ: tàu thủy bị kéo bởi hai tàu lai dắt trên sông chịu thêm lực cản của dòng nước, hoặc hệ thống cáp treo/cần cẩu chữ A), việc giải quyết bài toán đòi hỏi sự đồng bộ: **dùng Vectơ để lập mô hình không gian lực**, sau đó **dùng Hệ thức lượng trong tam giác (định lý cô-sin và sin) để tính toán chính xác độ lớn và góc lệch hướng di chuyển**.
 
 #block(
-  fill: rgb("f4f6f8"),
+  fill: rgb("e7f5ff"),
   inset: (x: 1.2em, y: 1.2em),
   radius: 6pt,
   stroke: (left: 3pt + rgb("c0392b")),
@@ -516,7 +522,7 @@ Hệ thống bài tập được xây dựng bao gồm 3 mức độ nhận th�
 
 === Bài toán 1 (Mức độ Nhận biết - Thông hiểu): Đo khoảng cách qua hồ nước
 #block(
-  fill: rgb("f4f6f8"),
+  fill: rgb("e7f5ff"),
   inset: (x: 1.2em, y: 1.5em),
   radius: 6pt,
   stroke: (left: 3pt + rgb("2c3e50")),
@@ -550,7 +556,7 @@ Hệ thống bài tập được xây dựng bao gồm 3 mức độ nhận th�
 
 === Bài toán 2 (Mức độ Vận dụng): Đo chiều cao ngọn tháp
 #block(
-  fill: rgb("f4f6f8"),
+  fill: rgb("e7f5ff"),
   inset: (x: 1.2em, y: 1.2em),
   radius: 6pt,
   stroke: (left: 3pt + rgb("2980b9")),
@@ -580,7 +586,7 @@ Hệ thống bài tập được xây dựng bao gồm 3 mức độ nhận th�
 === Bài toán 3 (Mức độ Vận dụng cao): Mô hình định vị lực kéo sà lan
  #v(0.8cm)
 #block(
-  fill: rgb("f4f6f8"),
+  fill: rgb("e7f5ff"),
   inset: (x: 1.2em, y: 1.2em),
   radius: 6pt,
   stroke: (left: 3pt + rgb("c0392b")),
